@@ -1,16 +1,38 @@
-# sandyq
+# sandyq 
 
 Done by sse_evn , justleha
 
-## Getting Started
+# Renting Items via App and Lockers
 
-This project is a starting point for a Flutter application.
+## Project Description
+Our project offers a unique opportunity to rent various items through a convenient mobile application and lockers. We connect users, allowing them to:
 
-A few resources to get you started if this is your first Flutter project:
+1. **Rent items from lockers** — choose the desired item, pay for the rental, and pick it up from the nearest locker.
+2. **Rent items from other users** — find the items you need, contact the owner, and arrange the rental via the app.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Key Features
+- **Item Catalog**: Easy search and filters to find the desired item.
+- **Booking and Payment**: Simple and secure rental processing directly in the app.
+- **Locker Integration**: Pick up items from a locker at your convenience.
+- **Personal Account**: Manage rentals, view rental history, and leave feedback.
+- **User Interaction**: Communicate with other users to discuss rental details.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Advantages
+- **Convenience**: Everything you need is available in a single app.
+- **Accessibility**: Lockers are located across the city for your ease of access.
+- **Flexibility**: Rent items either from lockers or directly from other users.
+- **Cost-Efficiency**: No need to purchase items you rarely use — just rent them!
+
+## Technologies
+- **Mobile Application**: Built using Flutter for iOS and Android support.
+- **Locker Integration**: Seamless interaction with hardware for automated item delivery.
+- **Database**: Mysql for storing user, item, and rental information.
+- **Maps**: OSM API for displaying locker locations.
+
+## How It Works
+1. **Choose an Item**: Find the item you need in the app's catalog.
+2. **Process the Rental**: Select the delivery method — from a locker or directly from the owner.
+3. **Pick Up the Item**: Either from a locker or by meeting the owner.
+4. **Return the Item**: Return it to a locker or hand it back to the owner after the rental period.
+
+
