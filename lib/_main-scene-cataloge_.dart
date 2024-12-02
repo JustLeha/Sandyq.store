@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '_map_of_almaty_.dart'; // Подключение карты Алматы
+import '_loving_.dart'; // Импорт экрана Избранное
+import '_map-of-almaty_.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -12,9 +13,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
+    // Ваши экраны
     MapPage(), // Экран карты Алматы
     CategoriesScreenBody(), // Экран с категориями
-    Center(child: Text('Избранное')), // Замените на нужный экран
+    FavoritesPage(), // Экран избранного, который был подключен
     Center(child: Text('Корзина')), // Замените на нужный экран
     Center(child: Text('Профиль')), // Замените на нужный экран
   ];
