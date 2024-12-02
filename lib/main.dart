@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '_main-scene-cataloge_.dart'; // Убедитесь, что этот файл существует
+import '_main-scene-cataloge_.dart'; 
 
 void main() {
   runApp(const MyApp());
