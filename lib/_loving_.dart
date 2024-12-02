@@ -66,3 +66,13 @@ class FavoritesPage extends StatelessWidget {
     );
   }
 }
+// GridButton(
+// title: "Категория товаров",
+// icon: Icons.grid_view,
+// onTap: () {
+// Navigator.push(
+// context,
+// MaterialPageRoute(builder: (context) => const CategoriesScreen()),
+// );
+// },
+// ),
