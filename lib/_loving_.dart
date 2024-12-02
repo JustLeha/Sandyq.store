@@ -5,17 +5,17 @@ class FavoritesPage extends StatelessWidget {
     {
       'title': 'Аренда велосипеда',
       'price': '2000 KZT/день',
-      'image': 'https://via.placeholder.com/150',
+      'image': 'https://stryderbikes.com/cdn/shop/files/VolticX27BlkRed.jpg?v=1723894321',
     },
     {
       'title': 'Аренда палатки',
       'price': '3000 KZT/день',
-      'image': 'https://via.placeholder.com/150',
+      'image': 'https://cdn11.bigcommerce.com/s-opskm61a5f/images/stencil/1280x1280/products/1192/7283/715-63__2__59637.1698188330.jpg?c=1',
     },
     {
       'title': 'Аренда кофемашины',
       'price': '5000 KZT/день',
-      'image': 'https://via.placeholder.com/150',
+      'image': 'https://m.media-amazon.com/images/I/6162rBwVgeL._AC_SL1500_.jpg',
     },
   ];
 
