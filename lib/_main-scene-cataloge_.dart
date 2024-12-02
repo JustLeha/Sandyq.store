@@ -1,8 +1,53 @@
 import 'package:flutter/material.dart';
+import '_map_of_almaty_.dart'; // Подключение карты Алматы
 
-class CategoriesScreen extends StatelessWidget {
+class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
 
+  @override
+  _CategoriesScreenState createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    MapPage(), // Экран карты Алматы
+    CategoriesScreenBody(), // Экран с категориями
+    Center(child: Text('Избранное')), // Замените на нужный экран
+    Center(child: Text('Корзина')), // Замените на нужный экран
+    Center(child: Text('Профиль')), // Замените на нужный экран
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.orange,
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Карта'),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Каталог'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Избранное'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Корзина'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль'),
+        ],
+      ),
+    );
+  }
+}
+
+class CategoriesScreenBody extends StatelessWidget {
   final List<Map<String, dynamic>> categories = const [
     {'title': 'Детские товары,\nИгрушки', 'icon': Icons.toys},
     {'title': 'Строительство\nи Ремонт', 'icon': Icons.construction},
@@ -77,18 +122,6 @@ class CategoriesScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.orange,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Карта'),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Каталог'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Избранное'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Корзина'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль'),
-        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '_main-scene-cataloge_.dart';
+import '_map-of-almaty_.dart';
 
 void main() {
   runApp(const MyApp());

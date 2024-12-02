@@ -30,6 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_map: ^4.0.0
+  latlong2: ^0.8.1 # Для работы с координатами
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -88,3 +91,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
