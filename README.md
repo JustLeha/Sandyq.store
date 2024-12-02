@@ -1,6 +1,7 @@
 # sandyq 
-![Lockers](Desktop/sandyq.jpeg)
+
 Done by sse_evn , justleha
+![Lockers](assets/sandyq.jpeg)
 
 # Renting Items via App and Lockers
 
