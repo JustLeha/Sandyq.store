@@ -16,6 +16,14 @@ class FavoritesPage extends StatelessWidget {
       'title': 'Аренда кофемашины',
       'price': '5000 KZT/день',
       'image': 'https://m.media-amazon.com/images/I/6162rBwVgeL._AC_SL1500_.jpg',
+    },  {
+      'title': 'Аренда тест',
+      'price': '5000 KZT/день',
+      'image': 'https://m.media-amazon.com/images/I/6162rBwVgeL._AC_SL1500_.jpg',
+    },  {
+      'title': 'Аренда машины',
+      'price': '5000 KZT/день',
+      'image': 'https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1639037192/lmcode/FI4Uj0r740SI-aoCcB4Pbw/18513390.png',
     },
   ];
 
