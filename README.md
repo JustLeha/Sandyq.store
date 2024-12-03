@@ -1,4 +1,4 @@
-# sandyq 
+# sandyq store
 
 Done by sse_evn , justleha
 ![Lockers](assets/sandyq.jpeg)
