@@ -16,3 +16,20 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+buildscript {
+    repositories {
+        google() // Обязательно для плагина Android
+        mavenCentral() // Для других библиотек
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.2' // Версия Gradle плагина
+        classpath 'com.google.gms:google-services:4.3.15' // Для Firebase
+    }
+}
+
+allprojects {
+    repositories {
+        google() // Обязательно
+        mavenCentral() // Используйте вместо jcenter(), если оно указано
+    }
+}
