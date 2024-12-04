@@ -1,5 +1,5 @@
-# sandyq 
-# gitsandy
+# sandyq
+
 Done by sse_evn , justleha
 ![Lockers](assets/sandyq.jpeg)
 

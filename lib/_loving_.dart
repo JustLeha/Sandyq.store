@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'main.dart';
 class FavoritesPage extends StatelessWidget {
   final List<Map<String, dynamic>> favoriteItems = [
     {
