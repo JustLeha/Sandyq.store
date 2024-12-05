@@ -1,10 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import '_auth_screen.dart'; // Ваш экран авторизации
+import '_main_login_reges_scene.dart';
+import 'menu/_main__menu.dart'; // Ваш экран авторизации
 //import '_sett_ing_.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Инициализация фреймворка
-  await Firebase.initializeApp(); // Инициализация Firebase
   runApp(MyApp());
 }
 
@@ -12,11 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Firebase App',
+      title: 'Sandyq',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
       ),
-      home:  AuthScreen(), // Экран авторизации
+      home:  Sandyq_main_screen(), // Экран авторизации
     );
   }
 }
