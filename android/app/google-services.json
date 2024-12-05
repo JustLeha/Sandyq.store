@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "25923882896",
+    "project_id": "sandyq-d186e",
+    "storage_bucket": "sandyq-d186e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25923882896:android:d48703d08352168680ed15",
+        "android_client_info": {
+          "package_name": "sandyq.store.sandyq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZEI89xFvaZQKxmNs8V7rovEedgc404NQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

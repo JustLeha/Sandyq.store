@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sandyq/_main_authorization_and_registration.dart';
+
+import '_map-of-almaty_.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -9,7 +12,11 @@ class SettingsScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Возвращаемся на предыдущий экран
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+
           },
         ),
       ),
