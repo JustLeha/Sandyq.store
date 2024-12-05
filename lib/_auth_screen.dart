@@ -1,7 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import '_main_authorization_and_registration.dart';  // Ваш экран регистрации
+import 'package:path_provider/path_provider.dart';
+import '_map-of-almaty_.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -9,116 +10,177 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-  bool isLoading = false;
+  final _phoneController = TextEditingController();
+  final _otpController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool _isOtpSent = false;
+  String? _otp;
+  late File _jsonFile;
+  late Map<String, dynamic> _users;
 
-  Future<void> _signInWithGoogle(BuildContext context) async {
-    setState(() {
-      isLoading = true;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _initializeFile();
+  }
 
-    try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+  Future<void> _initializeFile() async {
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/users.json');
 
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
+    if (await file.exists()) {
+      final content = await file.readAsString();
+      _users = json.decode(content);
+    } else {
+      _users = {};
+      await file.writeAsString(json.encode(_users));
+    }
+    _jsonFile = file;
+  }
 
-      // Вход с использованием Google аккаунта
-      await _auth.signInWithCredential(credential);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => PhoneAuthScreen()),  // Переход на экран регистрации или главный экран
-      );
-    } catch (e) {
-      print('Error signing in with Google: $e');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to sign in with Google')));
-    } finally {
-      setState(() {
-        isLoading = false;
-      });
+  Future<void> _saveToFile() async {
+    await _jsonFile.writeAsString(json.encode(_users));
+  }
+
+  String _normalizePhoneNumber(String phone) {
+    if (phone.startsWith('8') && phone.length == 11) {
+      return '+7${phone.substring(1)}';
+    } else if (phone.startsWith('+7') && phone.length == 12) {
+      return phone;
+    } else {
+      return phone;
     }
   }
 
-  Future<void> _signInWithPhone(BuildContext context) async {
-    setState(() {
-      isLoading = true;
-    });
-
-    try {
-      await _auth.verifyPhoneNumber(
-        phoneNumber: '+1 555-555-5555',  // Введите номер телефона для теста
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          await _auth.signInWithCredential(credential);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => PhoneAuthScreen()),  // Переход на экран регистрации или главный экран
-          );
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          print('Phone verification failed: ${e.message}');
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to verify phone number')));
-        },
-        codeSent: (String verificationId, int? resendToken) {
-          print('Code sent to phone number');
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Code sent to phone number')));
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {},
-      );
-    } catch (e) {
-      print('Error signing in with phone: $e');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to sign in with phone')));
-    } finally {
+  void _sendOtp() {
+    if (_formKey.currentState!.validate()) {
+      String phone = _normalizePhoneNumber(_phoneController.text.trim());
       setState(() {
-        isLoading = false;
+        _isOtpSent = true;
+        _otp = (1000 + (9999 - 1000) * (DateTime.now().millisecondsSinceEpoch % 1000) ~/ 1000).toString();
       });
+
+      // Симуляция автоматического заполнения кода
+      Future.delayed(Duration(seconds: 2), _setOtpAutomatically);
+
+      print("OTP for $phone: $_otp");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Код отправлен на номер $phone')),
+      );
+
+      // Переход на главный экран после отправки OTP
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
     }
+  }
+
+  void _setOtpAutomatically() {
+    if (_otp != null) {
+      setState(() {
+        _otpController.text = _otp!;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Код автоматически введен')),
+      );
+    }
+  }
+
+  void _verifyOtp() async {
+    if (_otpController.text.trim() == _otp) {
+      String phone = _normalizePhoneNumber(_phoneController.text.trim());
+      _users[phone] = {'phone': phone, 'createdAt': DateTime.now().toIso8601String()};
+      await _saveToFile();
+
+      print("Пользователь с номером $phone успешно сохранен");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Успешный вход!')),
+      );
+
+      setState(() {
+        _isOtpSent = false;
+        _otp = null;
+        _phoneController.clear();
+        _otpController.clear();
+      });
+
+      // Переход на главный экран после успешной верификации OTP
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Неверный код подтверждения')),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    _otpController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Authentication', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.blueAccent,
+        title: Text('Авторизация по номеру телефона'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Center(
+        child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              if (isLoading)
-                CircularProgressIndicator()
-              else ...[
-                // Кнопка входа через Google
-                ElevatedButton.icon(
-                  onPressed: () => _signInWithGoogle(context),
-                  icon: Icon(Icons.g_mobiledata, size: 30),
-                  label: Text('Sign in with Google', style: TextStyle(fontSize: 16)),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black, backgroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                    side: BorderSide(color: Colors.grey),
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (!_isOtpSent) ...[
+                TextFormField(
+                  controller: _phoneController,
+                  decoration: InputDecoration(
+                    labelText: 'Номер телефона',
+                    border: OutlineInputBorder(),
+                    prefixText: '',
                   ),
+                  keyboardType: TextInputType.phone,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Введите номер телефона';
+                    }
+                    if (!RegExp(r'^8\d{10}$|^\+7\d{10}$').hasMatch(value)) {
+                      return 'Введите корректный номер телефона (формат 8XXXXXXXXXX или +7XXXXXXXXXX)';
+                    }
+                    return null;
+                  },
                 ),
-                SizedBox(height: 20),
-
-                // Кнопка входа через телефон
-                ElevatedButton.icon(
-                  onPressed: () => _signInWithPhone(context),
-                  icon: Icon(Icons.phone, size: 30),
-                  label: Text('Sign in with Phone Number', style: TextStyle(fontSize: 16)),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black, backgroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                    side: BorderSide(color: Colors.grey),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: _sendOtp,
+                  child: Text('Отправить код'),
+                ),
+              ] else ...[
+                TextFormField(
+                  controller: _otpController,
+                  decoration: InputDecoration(
+                    labelText: 'Введите код из SMS',
+                    border: OutlineInputBorder(),
                   ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Введите код';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: _verifyOtp,
+                  child: Text('Подтвердить код'),
                 ),
               ],
             ],
