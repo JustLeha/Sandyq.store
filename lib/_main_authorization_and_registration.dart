@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:sandyq/_main-scene-cataloge_.dart';
-import 'package:sandyq/_map-of-almaty_.dart';
 import 'package:sandyq/menu/_main__menu.dart';
 
 class PhoneAuthScreen extends StatelessWidget {

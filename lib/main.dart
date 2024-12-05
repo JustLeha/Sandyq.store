@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '_main_login_reges_scene.dart';
-// import 'menu/_main__menu.dart'; // Ваш экран авторизации
-//import '_sett_ing_.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Инициализация фреймворка
   runApp(MyApp());

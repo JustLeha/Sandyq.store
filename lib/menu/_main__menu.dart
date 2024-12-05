@@ -56,13 +56,13 @@
 // }
 
 import 'package:flutter/material.dart';
-
+// import 'package:sandyq/_main-scene-cataloge_.dart';
 class MyHomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Карта'),
@@ -92,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Карта',
           ),
           BottomNavigationBarItem(
+
             icon: Icon(Icons.list),
             label: 'Каталог',
           ),
@@ -109,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white, // Цвет выбранного элемента
+        selectedItemColor: Colors.black, // Цвет выбранного элемента
         unselectedItemColor: Colors.white70, // Цвет невыбранного элемента
         backgroundColor: Colors.orange, // Темный фон меню
         elevation: 10, // Поднятие меню для создания тени
