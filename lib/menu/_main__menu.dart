@@ -54,3 +54,68 @@
 //     );
 //   }
 // }
+
+import 'package:flutter/material.dart';
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Карта'),
+    Text('Каталог'),
+    Text('Избранное'),
+    Text('Корзина'),
+    Text('Профиль'),
+
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Карта',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Каталог',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Избранное',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Корзина',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Профиль',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white, // Цвет выбранного элемента
+        unselectedItemColor: Colors.white70, // Цвет невыбранного элемента
+        backgroundColor: Colors.orange, // Темный фон меню
+        elevation: 10, // Поднятие меню для создания тени
+        type: BottomNavigationBarType.fixed, // Фиксированное меню
+        onTap: _onItemTapped,
+      ),
+    );
+  }
+}

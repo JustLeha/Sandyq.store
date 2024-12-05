@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:sandyq/_main-scene-cataloge_.dart';
 import 'package:sandyq/_map-of-almaty_.dart';
+import 'package:sandyq/menu/_main__menu.dart';
 
 class PhoneAuthScreen extends StatelessWidget {
   final TextEditingController _phoneController = TextEditingController();
@@ -85,7 +86,7 @@ class PhoneAuthScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                          builder: (context) => MapPage()));
+                          builder: (context) => MyHomePage()));
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
