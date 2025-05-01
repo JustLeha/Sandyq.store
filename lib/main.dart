@@ -5,6 +5,8 @@ import 'theme/theme_provider.dart';
 import 'theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 import 'l10n/language_provider.dart';
+import 'providers/products_provider.dart';
+import 'providers/cart_provider.dart';
 import '_main-scene-cataloge_.dart';
 
 void main() {
@@ -13,6 +15,8 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
+        ChangeNotifierProvider(create: (_) => ProductsProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: const MyApp(),
     ),
@@ -87,6 +91,9 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final phoneController = TextEditingController();
+    final passwordController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).welcome),
@@ -134,6 +141,7 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             TextField(
+              controller: phoneController,
               decoration: InputDecoration(
                 labelText: 'Номер телефона',
                 prefixIcon: const Icon(Icons.phone),
@@ -147,6 +155,7 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             TextField(
+              controller: passwordController,
               decoration: InputDecoration(
                 labelText: 'Пароль',
                 prefixIcon: const Icon(Icons.lock),
@@ -161,11 +170,20 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const CategoriesScreen()),
-                );
+                // Простая проверка для демонстрации
+                if (phoneController.text.isNotEmpty &&
+                    passwordController.text.isNotEmpty) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CategoriesScreen()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('Пожалуйста, заполните все поля')),
+                  );
+                }
               },
               child: Text(AppLocalizations.of(context).login),
               style: ElevatedButton.styleFrom(
@@ -177,13 +195,133 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            TextButton(
+            ElevatedButton(
               onPressed: () {
-                // Логика для регистрации
+                // Переход на страницу регистрации
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RegisterPage()),
+                );
               },
-              child: Text(
-                AppLocalizations.of(context).register,
-                style: const TextStyle(color: Colors.black),
+              child: const Text('Регистрация'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                minimumSize: const Size(double.infinity, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final nameController = TextEditingController();
+    final phoneController = TextEditingController();
+    final passwordController = TextEditingController();
+    final confirmPasswordController = TextEditingController();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Регистрация'),
+        backgroundColor: Colors.orange,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: nameController,
+              decoration: InputDecoration(
+                labelText: 'Имя',
+                prefixIcon: const Icon(Icons.person),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                filled: true,
+                fillColor: Colors.grey[200],
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: phoneController,
+              decoration: InputDecoration(
+                labelText: 'Номер телефона',
+                prefixIcon: const Icon(Icons.phone),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                filled: true,
+                fillColor: Colors.grey[200],
+              ),
+              keyboardType: TextInputType.phone,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                labelText: 'Пароль',
+                prefixIcon: const Icon(Icons.lock),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                filled: true,
+                fillColor: Colors.grey[200],
+              ),
+              obscureText: true,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: confirmPasswordController,
+              decoration: InputDecoration(
+                labelText: 'Подтвердите пароль',
+                prefixIcon: const Icon(Icons.lock),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                filled: true,
+                fillColor: Colors.grey[200],
+              ),
+              obscureText: true,
+            ),
+            const SizedBox(height: 32),
+            ElevatedButton(
+              onPressed: () {
+                // Простая проверка для демонстрации
+                if (nameController.text.isNotEmpty &&
+                    phoneController.text.isNotEmpty &&
+                    passwordController.text.isNotEmpty &&
+                    passwordController.text == confirmPasswordController.text) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CategoriesScreen()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text(
+                            'Пожалуйста, заполните все поля и убедитесь, что пароли совпадают')),
+                  );
+                }
+              },
+              child: const Text('Зарегистрироваться'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+                minimumSize: const Size(double.infinity, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
           ],
