@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'providers/products_provider.dart';
+import 'providers/cart_provider.dart';
 import '_loving_.dart'; // Импорт экрана Избранное
 import '_map-of-almaty_.dart';
 
@@ -115,9 +118,21 @@ class CategoriesScreenBody extends StatelessWidget {
                 itemCount: categories.length,
                 itemBuilder: (context, index) {
                   final category = categories[index];
-                  return CategoryCard(
-                    title: category['title'],
-                    icon: category['icon'],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductsListScreen(
+                            categoryTitle: category['title'],
+                          ),
+                        ),
+                      );
+                    },
+                    child: CategoryCard(
+                      title: category['title'],
+                      icon: category['icon'],
+                    ),
                   );
                 },
               ),
@@ -155,6 +170,119 @@ class CategoryCard extends StatelessWidget {
             title,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProductsListScreen extends StatelessWidget {
+  final String categoryTitle;
+
+  const ProductsListScreen({
+    Key? key,
+    required this.categoryTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final products = Provider.of<ProductsProvider>(context)
+        .getProductsByCategory(categoryTitle);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(categoryTitle),
+        backgroundColor: Colors.orange,
+      ),
+      body: products.isEmpty
+          ? const Center(
+              child: Text('В этой категории пока нет товаров'),
+            )
+          : ListView.builder(
+              itemCount: products.length,
+              itemBuilder: (context, index) {
+                final product = products[index];
+                return ProductCard(product: product);
+              },
+            ),
+    );
+  }
+}
+
+class ProductCard extends StatelessWidget {
+  final Map<String, dynamic> product;
+
+  const ProductCard({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.network(
+            product['image'],
+            height: 200,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product['title'],
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  '${product['price']} ₸',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.orange,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(product['description']),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.favorite_border),
+                      onPressed: () {
+                        // Добавление в избранное
+                      },
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Provider.of<CartProvider>(context, listen: false)
+                            .addToCart(product);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Товар добавлен в корзину'),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                      ),
+                      child: const Text('В корзину'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

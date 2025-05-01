@@ -1,48 +1,26 @@
 import 'package:flutter/material.dart';
 
-class CartProvider with ChangeNotifier {
-  final List<Map<String, dynamic>> _items = [];
-  bool _isLoading = false;
+class CartProvider extends ChangeNotifier {
+  final List<Map<String, dynamic>> _cartItems = [];
 
-  List<Map<String, dynamic>> get items => _items;
-  bool get isLoading => _isLoading;
+  List<Map<String, dynamic>> get cartItems => _cartItems;
 
   double get totalPrice {
-    return _items.fold(
-        0, (sum, item) => sum + (item['price'] * item['quantity']));
+    return _cartItems.fold(0, (sum, item) => sum + (item['price'] as double));
   }
 
   void addToCart(Map<String, dynamic> product) {
-    final existingItemIndex =
-        _items.indexWhere((item) => item['id'] == product['id']);
-
-    if (existingItemIndex != -1) {
-      _items[existingItemIndex]['quantity'] += 1;
-    } else {
-      _items.add({
-        ...product,
-        'quantity': 1,
-      });
-    }
-
+    _cartItems.add(product);
     notifyListeners();
   }
 
-  void updateQuantity(String itemId, int quantity) {
-    final index = _items.indexWhere((item) => item['id'] == itemId);
-    if (index != -1) {
-      _items[index]['quantity'] = quantity;
-      notifyListeners();
-    }
-  }
-
-  void removeFromCart(String itemId) {
-    _items.removeWhere((item) => item['id'] == itemId);
+  void removeFromCart(Map<String, dynamic> product) {
+    _cartItems.remove(product);
     notifyListeners();
   }
 
   void clearCart() {
-    _items.clear();
+    _cartItems.clear();
     notifyListeners();
   }
 }
