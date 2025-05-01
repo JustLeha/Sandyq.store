@@ -11,14 +11,15 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
   int _selectedIndex = 0;
+  final List<Map<String, dynamic>> _cartItems = [];
+  final List<Map<String, dynamic>> _favoriteItems = [];
 
   final List<Widget> _screens = [
-    // Ваши экраны
     MapPage(), // Экран карты Алматы
     CategoriesScreenBody(), // Экран с категориями
     FavoritesPage(), // Экран избранного, который был подключен
-    Center(child: Text('Корзина')), // Замените на нужный экран
-    Center(child: Text('Профиль')), // Замените на нужный экран
+    CartPage(), // Заменим на новый виджет корзины
+    ProfilePage(), // Заменим на новый виджет профиля
   ];
 
   void _onItemTapped(int index) {
@@ -40,8 +41,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Карта'),
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Каталог'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Избранное'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Корзина'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite), label: 'Избранное'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), label: 'Корзина'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль'),
         ],
       ),
@@ -63,9 +66,6 @@ class CategoriesScreenBody extends StatelessWidget {
     {'title': 'Ноутбуки', 'icon': Icons.laptop},
     {'title': 'Дроны', 'icon': Icons.air},
     {'title': 'Книги', 'icon': Icons.book},
-    {'title': 'Test', 'icon': Icons.book},
-    {'title': 'test', 'icon': Icons.book},
-    {'title': 'test', 'icon': Icons.book},
   ];
 
   @override
@@ -155,6 +155,177 @@ class CategoryCard extends StatelessWidget {
             title,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CartPage extends StatelessWidget {
+  const CartPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Корзина'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () {
+              // Очистка корзины
+            },
+          ),
+        ],
+      ),
+      body: ListView.builder(
+        itemCount: 0, // Замените на количество товаров в корзине
+        itemBuilder: (context, index) {
+          return Card(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: ListTile(
+              leading: const CircleAvatar(
+                backgroundImage:
+                    NetworkImage('https://via.placeholder.com/150'),
+              ),
+              title: const Text('Название товара'),
+              subtitle: const Text('Цена: 1000 ₸'),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: () {
+                      // Уменьшение количества
+                    },
+                  ),
+                  const Text('1'),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      // Увеличение количества
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 3,
+              offset: const Offset(0, -1),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Итого:',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '0 ₸',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                // Оформление заказа
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+                minimumSize: const Size(double.infinity, 50),
+              ),
+              child: const Text('Оформить заказ'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Профиль'),
+      ),
+      body: ListView(
+        children: [
+          const SizedBox(height: 20),
+          const CircleAvatar(
+            radius: 50,
+            backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+          ),
+          const SizedBox(height: 20),
+          const Center(
+            child: Text(
+              'Алихан',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          const SizedBox(height: 20),
+          ListTile(
+            leading: const Icon(Icons.shopping_bag),
+            title: const Text('Мои заказы'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              // Переход к заказам
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.favorite),
+            title: const Text('Избранное'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              // Переход к избранному
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.location_on),
+            title: const Text('Мои адреса'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              // Переход к адресам
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Настройки'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              // Переход к настройкам
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.logout, color: Colors.red),
+            title: const Text(
+              'Выйти',
+              style: TextStyle(color: Colors.red),
+            ),
+            onTap: () {
+              // Выход из аккаунта
+            },
           ),
         ],
       ),

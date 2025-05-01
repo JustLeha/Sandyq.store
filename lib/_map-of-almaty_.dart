@@ -39,7 +39,7 @@ class MapPage extends StatelessWidget {
               point: LatLng(43.240370, 76.890080), // Алматинский Технологический Университет
               builder: (ctx) => Icon(Icons.location_on, color: Colors.blue, size: 30),
             ),
-            // Добавьте другие метки по аналогии
+            //  другие метки
           ],
         ),
       ],

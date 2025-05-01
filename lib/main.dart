@@ -1,18 +1,83 @@
 import 'package:flutter/material.dart';
-import '_main-scene-cataloge_.dart'; 
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'theme/theme_provider.dart';
+import 'theme/app_theme.dart';
+import 'l10n/app_localizations.dart';
+import 'l10n/language_provider.dart';
+import '_main-scene-cataloge_.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => LanguageProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+    return Consumer2<ThemeProvider, LanguageProvider>(
+      builder: (context, themeProvider, languageProvider, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: AppTheme.lightTheme.copyWith(
+            primaryColor: Colors.orange,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.orange,
+              foregroundColor: Colors.white,
+            ),
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              selectedItemColor: Colors.orange,
+              unselectedItemColor: Colors.grey,
+            ),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+                foregroundColor: Colors.white,
+              ),
+            ),
+          ),
+          darkTheme: AppTheme.darkTheme.copyWith(
+            primaryColor: Colors.orange,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.orange,
+              foregroundColor: Colors.white,
+            ),
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              selectedItemColor: Colors.orange,
+              unselectedItemColor: Colors.grey,
+            ),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+                foregroundColor: Colors.white,
+              ),
+            ),
+          ),
+          themeMode:
+              themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          locale: languageProvider.locale,
+          supportedLocales: const [
+            Locale('en'),
+            Locale('ru'),
+          ],
+          localizationsDelegates: [
+            const AppLocalizationsDelegate(),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: const LoginPage(),
+        );
+      },
     );
   }
 }
@@ -24,21 +89,48 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Войти'),
+        title: Text(AppLocalizations.of(context).welcome),
         backgroundColor: Colors.orange,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Provider.of<ThemeProvider>(context).isDarkMode
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+          ),
+          PopupMenuButton<String>(
+            onSelected: (String languageCode) {
+              Provider.of<LanguageProvider>(context, listen: false)
+                  .setLocale(languageCode);
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(
+                  value: 'en',
+                  child: const Text('English'),
+                ),
+                PopupMenuItem(
+                  value: 'ru',
+                  child: const Text('Русский'),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Войти в аккаунт',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+            Text(
+              AppLocalizations.of(context).welcome,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 32),
             TextField(
@@ -69,13 +161,13 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
-                // Логика входа
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const CategoriesScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const CategoriesScreen()),
                 );
               },
-              child: const Text('Войти'),
+              child: Text(AppLocalizations.of(context).login),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
                 minimumSize: const Size(double.infinity, 50),
@@ -89,9 +181,9 @@ class LoginPage extends StatelessWidget {
               onPressed: () {
                 // Логика для регистрации
               },
-              child: const Text(
-                'Нет аккаунта? Зарегистрироваться',
-                style: TextStyle(color: Colors.black),
+              child: Text(
+                AppLocalizations.of(context).register,
+                style: const TextStyle(color: Colors.black),
               ),
             ),
           ],
