@@ -8,8 +8,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Детский велосипед',
       'price': 1500,
       'category': 'Детские товары,\nИгрушки',
-      'image':
-          'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       'description': 'Отличный велосипед для детей от 3 до 6 лет',
     },
     {
@@ -17,8 +16,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Конструктор LEGO',
       'price': 800,
       'category': 'Детские товары,\nИгрушки',
-      'image':
-          'https://images.unsplash.com/photo-1606811842929-5bcdd5bafb0d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/5966228/pexels-photo-5966228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       'description': 'Набор LEGO City для детей от 6 лет',
     },
     {
@@ -26,8 +24,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Кукла Barbie',
       'price': 500,
       'category': 'Детские товары,\nИгрушки',
-      'image':
-          'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/5878509/pexels-photo-5878509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       'description': 'Кукла Barbie с аксессуарами',
     },
 
@@ -37,8 +34,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Набор инструментов',
       'price': 1000,
       'category': 'Строительство\nи Ремонт',
-      'image':
-          'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/209235/pexels-photo-209235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       'description': 'Профессиональный набор инструментов для ремонта',
     },
     {
@@ -46,8 +42,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Перфоратор',
       'price': 2000,
       'category': 'Строительство\nи Ремонт',
-      'image':
-          'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg',
       'description': 'Мощный перфоратор для ремонтных работ',
     },
     {
@@ -55,8 +50,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Шуруповерт',
       'price': 1500,
       'category': 'Строительство\nи Ремонт',
-      'image':
-          'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg',
       'description': 'Аккумуляторный шуруповерт',
     },
 
@@ -65,27 +59,24 @@ class ProductsProvider with ChangeNotifier {
       'id': '7',
       'title': 'Спортивный костюм',
       'price': 800,
-      'category': 'Одежды и\nКостюмы',
-      'image':
-          'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'category': 'Одежда и\nКостюмы',
+      'image': 'https://images.pexels.com/photos/1484808/pexels-photo-1484808.jpeg',
       'description': 'Удобный спортивный костюм для тренировок',
     },
     {
       'id': '8',
       'title': 'Джинсы',
       'price': 600,
-      'category': 'Одежды и\nКостюмы',
-      'image':
-          'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'category': 'Одежда и\nКостюмы',
+      'image': 'https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg',
       'description': 'Классические джинсы',
     },
     {
       'id': '9',
       'title': 'Футболка',
       'price': 300,
-      'category': 'Одежды и\nКостюмы',
-      'image':
-          'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'category': 'Одежда и\nКостюмы',
+      'image': 'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
       'description': 'Хлопковая футболка',
     },
 
@@ -95,8 +86,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Футбольный мяч',
       'price': 300,
       'category': 'Спортивный\nИнвентарь',
-      'image':
-          'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg',
       'description': 'Качественный футбольный мяч для игры',
     },
     {
@@ -104,8 +94,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Беговая дорожка',
       'price': 2000,
       'category': 'Спортивный\nИнвентарь',
-      'image':
-          'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg',
       'description': 'Электрическая беговая дорожка',
     },
     {
@@ -113,8 +102,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Гантели',
       'price': 500,
       'category': 'Спортивный\nИнвентарь',
-      'image':
-          'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/1220757/pexels-photo-1220757.jpeg',
       'description': 'Набор гантелей 2-10 кг',
     },
 
@@ -124,8 +112,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Горные лыжи',
       'price': 2500,
       'category': 'Коньки и лыжи',
-      'image':
-          'https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/2660276/pexels-photo-2660276.jpeg',
       'description': 'Профессиональные горные лыжи',
     },
     {
@@ -133,8 +120,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Коньки',
       'price': 1500,
       'category': 'Коньки и лыжи',
-      'image':
-          'https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg',
       'description': 'Фигурные коньки',
     },
     {
@@ -142,8 +128,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Лыжные палки',
       'price': 500,
       'category': 'Коньки и лыжи',
-      'image':
-          'https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/2660276/pexels-photo-2660276.jpeg',
       'description': 'Карбоновые лыжные палки',
     },
 
@@ -153,8 +138,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Зеркальный фотоаппарат',
       'price': 3000,
       'category': 'Видеокамеры и\nфотоаппараты',
-      'image':
-          'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg',
       'description': 'Профессиональный зеркальный фотоаппарат',
     },
     {
@@ -162,8 +146,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Экшн-камера',
       'price': 2000,
       'category': 'Видеокамеры и\nфотоаппараты',
-      'image':
-          'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg',
       'description': 'Экшн-камера 4K',
     },
     {
@@ -171,8 +154,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Объектив',
       'price': 1500,
       'category': 'Видеокамеры и\nфотоаппараты',
-      'image':
-          'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/301347/pexels-photo-301347.jpeg',
       'description': 'Широкоугольный объектив',
     },
 
@@ -181,27 +163,24 @@ class ProductsProvider with ChangeNotifier {
       'id': '19',
       'title': 'Наручные часы',
       'price': 1000,
-      'category': 'Украшение',
-      'image':
-          'https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'category': 'Украшения',
+      'image': 'https://images.pexels.com/photos/277319/pexels-photo-277319.jpeg',
       'description': 'Элегантные наручные часы',
     },
     {
       'id': '20',
       'title': 'Серебряное кольцо',
       'price': 800,
-      'category': 'Украшение',
-      'image':
-          'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'category': 'Украшения',
+      'image': 'https://images.pexels.com/photos/265906/pexels-photo-265906.jpeg',
       'description': 'Серебряное кольцо с камнем',
     },
     {
       'id': '21',
       'title': 'Золотая цепочка',
       'price': 1500,
-      'category': 'Украшение',
-      'image':
-          'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'category': 'Украшения',
+      'image': 'https://images.pexels.com/photos/978982/pexels-photo-978982.jpeg',
       'description': 'Золотая цепочка 585 пробы',
     },
 
@@ -211,8 +190,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Палатка',
       'price': 2000,
       'category': 'Кэмпинг',
-      'image':
-          'https://images.unsplash.com/photo-1487730116645-74489c95b41b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/803226/pexels-photo-803226.jpeg',
       'description': 'Просторная палатка для кемпинга',
     },
     {
@@ -220,8 +198,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Спальный мешок',
       'price': 1000,
       'category': 'Кэмпинг',
-      'image':
-          'https://images.unsplash.com/photo-1487730116645-74489c95b41b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/2422265/pexels-photo-2422265.jpeg',
       'description': 'Теплый спальный мешок',
     },
     {
@@ -229,8 +206,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Рюкзак',
       'price': 800,
       'category': 'Кэмпинг',
-      'image':
-          'https://images.unsplash.com/photo-1487730116645-74489c95b41b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/904616/pexels-photo-904616.jpeg',
       'description': 'Туристический рюкзак 60л',
     },
 
@@ -240,8 +216,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Декоративная ваза',
       'price': 600,
       'category': 'Декор',
-      'image':
-          'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/484152/pexels-photo-484152.jpeg',
       'description': 'Стильная декоративная ваза',
     },
     {
@@ -249,8 +224,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Картина',
       'price': 1000,
       'category': 'Декор',
-      'image':
-          'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg',
       'description': 'Декоративная картина',
     },
     {
@@ -258,8 +232,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Светильник',
       'price': 800,
       'category': 'Декор',
-      'image':
-          'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/132340/pexels-photo-132340.jpeg',
       'description': 'Настольный светильник',
     },
 
@@ -269,8 +242,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Игровой ноутбук',
       'price': 5000,
       'category': 'Ноутбуки',
-      'image':
-          'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/18105/pexels-photo.jpg',
       'description': 'Мощный игровой ноутбук',
     },
     {
@@ -278,8 +250,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Ультрабук',
       'price': 4000,
       'category': 'Ноутбуки',
-      'image':
-          'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/7974/pexels-photo.jpg',
       'description': 'Легкий ультрабук',
     },
     {
@@ -287,8 +258,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Ноутбук для работы',
       'price': 3000,
       'category': 'Ноутбуки',
-      'image':
-          'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/38568/apple-imac-ipad-workplace-38568.jpeg',
       'description': 'Ноутбук для офисной работы',
     },
 
@@ -298,8 +268,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Квадрокоптер',
       'price': 3000,
       'category': 'Дроны',
-      'image':
-          'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/399946/pexels-photo-399946.jpeg',
       'description': 'Профессиональный квадрокоптер с камерой',
     },
     {
@@ -307,8 +276,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Мини-дрон',
       'price': 1500,
       'category': 'Дроны',
-      'image':
-          'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/1275929/pexels-photo-1275929.jpeg',
       'description': 'Компактный мини-дрон',
     },
     {
@@ -316,8 +284,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Дрон с камерой',
       'price': 2500,
       'category': 'Дроны',
-      'image':
-          'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/3593922/pexels-photo-3593922.jpeg',
       'description': 'Дрон с HD камерой',
     },
 
@@ -327,8 +294,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Книга по программированию',
       'price': 400,
       'category': 'Книги',
-      'image':
-          'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/1926988/pexels-photo-1926988.jpeg',
       'description': 'Учебник по программированию на Flutter',
     },
     {
@@ -336,8 +302,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Художественная литература',
       'price': 300,
       'category': 'Книги',
-      'image':
-          'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/904616/pexels-photo-904616.jpeg',
       'description': 'Сборник рассказов',
     },
     {
@@ -345,8 +310,7 @@ class ProductsProvider with ChangeNotifier {
       'title': 'Детская книга',
       'price': 200,
       'category': 'Книги',
-      'image':
-          'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      'image': 'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg',
       'description': 'Сказки для детей',
     },
   ];
